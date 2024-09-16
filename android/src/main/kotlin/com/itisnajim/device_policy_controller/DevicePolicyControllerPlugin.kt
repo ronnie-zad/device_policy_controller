@@ -498,7 +498,7 @@ class DevicePolicyControllerPlugin : FlutterPlugin, MethodCallHandler, ActivityA
             deviceInfoMap["hardware"] = Build.HARDWARE
             deviceInfoMap["id"] = Build.ID
             deviceInfoMap["fingerprint"] = Build.FINGERPRINT
-            deviceInfoMap["serial"] = Build.SERIAL
+            deviceInfoMap["serial"] = Build.getSerial()
             deviceInfoMap["osVersion"] = Build.VERSION.SDK_INT
             deviceInfoMap["osRelease"] = Build.VERSION.RELEASE
             deviceInfoMap["sdkVersion"] = Build.VERSION.SDK_INT
