@@ -1,41 +1,24 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.itisnajim.device_policy_controller">
-
-  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-  <uses-permission android:name=
-      "android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
-  <uses-permission android:name=
-      "android.permission.GET_ACCOUNTS"/>
-  <uses-permission android:name=
-      "android.permission.MANAGE_ACCOUNTS"/>
-  <uses-permission android:name=
-      "android.permission.WRITE_SYNC_SETTINGS"/>
-  <uses-permission android:name=
-      "com.google.android.providers.gsf.permission.READ_GSERVICES"/>
-
-  <application
-      android:name="${applicationName}">
-
-    <provider
-        android:authorities="com.itisnajim.device_policy_controller.multipreferences.MultiProvider"
-        android:name="com.itisnajim.device_policy_controller.multipreferences.MultiProvider"
-        android:process=":multi_preferences"
-        android:exported="false"/>
-
-    <receiver
-        android:name=".AppDeviceAdminReceiver"
-        android:enabled="true"
-        android:permission="android.permission.BIND_DEVICE_ADMIN"
-        android:exported="true"
-        >
-      <meta-data
-          android:name="android.app.device_admin"
-          android:resource="@xml/device_admin_receiver" />
-
-      <intent-filter>
-        <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
-        <action android:name="android.intent.action.BOOT_COMPLETED" />
-      </intent-filter>
-    </receiver>
-  </application>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.itisnajim.device_policy_controller">
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	<uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+	<uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+	<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+	<uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+	<uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+	<uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+	<application android:name="${applicationName}">
+		<provider android:authorities="com.itisnajim.device_policy_controller.multipreferences.MultiProvider" android:name="com.itisnajim.device_policy_controller.multipreferences.MultiProvider" android:process=":multi_preferences" android:exported="false" />
+		<receiver android:name=".AppDeviceAdminReceiver" android:enabled="true" android:permission="android.permission.BIND_DEVICE_ADMIN" android:exported="true">
+			<meta-data android:name="android.app.device_admin" android:resource="@xml/device_admin_receiver" />
+			<intent-filter>
+				<action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+				<action android:name="android.intent.action.BOOT_COMPLETED" />
+				<action android:name="android.app.action.PROVISIONING_SERIAL_NUMBER" />
+				<action android:name="android.app.action.PROFILE_PROVISIONING_COMPLETE" />
+				<action android:name="android.app.action.GET_PROVISIONING_MODE" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</receiver>
+	</application>
 </manifest>
